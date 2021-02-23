@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #f4f4f4;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex; /* Everything will go horizontal */
+  flex-direction: column; /* This changes everything to vertical instead of rows */
+  align-items: center;
+  min-height: 100vh; /* Set to 100vh to the whole view port */
+  margin: 0;
+}
+
+.container {
+  display: flex; /* align the main area and the sidebar horizontal */
+  padding: 20px;
+  margin:0 auto;
+  max-width: 100%;
+  width: 800px; /* so it will stay in as a center column when we stretch the browser out */
+}
+
+aside {
+  padding: 10px 20px; /* top & bottom: 10px | left & right: 20px*/
+  width: 250px;
+  border-right: 1px solid #111; /* adding border to separate the sidebar and the main content */
+}
+
+button {
+  cursor: pointer;
+  background-color: #fff;
+  border: solid 1px #111;
+  border-radius: 5px;
+  display: block; /* this makes each button on its own line. Otherwise, default is inline */
+  width: 100%; /* this makes the button all stretched out to the same size as the biggest one */
+  padding: 10px; /* that's the padding all around the buttons */
+  margin-bottom: 20px; /* adding the margin at the bottom outside of the buttons so they are not sitting on each other */
+  font-weight: bold;
+  font-size: 14px;
+}
