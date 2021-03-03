@@ -17,7 +17,6 @@ getRandomUser();
 getRandomUser();
 getRandomUser();
 
-
 // Fetch random user and add money with async
 async function getRandomUser() {
   const res = await fetch('https://randomuser.me/api');
@@ -30,7 +29,6 @@ async function getRandomUser() {
     //* Math.floor round the number to the largest integer.
     //* Math.random generates a pseudo-random number between 0 to 1
   }
-
   addData(newUser);
 }
 //* with async await, we don't need to chain .then like the one above (commented out)
@@ -44,6 +42,32 @@ async function getRandomUser() {
 // Add new user object to data array
 function addData(obj) {
   data.push(obj); //* push means append for array in JS
+
+  updateDOM();
 }
 
-console.log(data)
+// Update DOM
+function updateDOM(providedData = data) {  
+  // Clear main div
+  main.innerHTML = '<h2><strong>Person</strong> Wealth</h2>'; //* This one clears the innerHTML
+
+  providedData.forEach(item => {  //* item doesn't need to be in () because it's only one argument. 
+    const element = document.createElement('div'); //* `document.createElement` creates an HTML element. This is a new div for person in css
+    element.classList.add('person');  //* Adding new class `person` for the 'div' we just created
+    element.innerHTML = `<strong>${item.name}</strong> ${formatMoney(item.money)}`
+    main.appendChild(element);
+  });
+}
+//@ for the argument, we are setting providedData to data as default if we didn't put any argument in when we were calling the function
+//# forEach: if not using it, we will need to do a for loop, which will look like this:
+  //# for (i = 0; i < providedData.length; i++) {
+  //#   providedData[i].___
+  //# } 
+
+  // Format number as money
+  function formatMoney(number) {
+    return '$' + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');  //* From StackOverflow #149055
+  }
+
+// Event Listeners
+addUserBtn.addEventListener('click', getRandomUser);
