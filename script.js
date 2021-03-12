@@ -39,6 +39,16 @@ async function getRandomUser() {
 //@ Note on promise with Async and Await: We must use await in front of any promise we captured from the API
 //* 
 
+// Double everyones' money
+function doubleMoney() {
+  data = data.map((user) => {
+    return { ...user, money: user.money * 2 }; //@ ... is a spread operator. It just copies all the users
+  });
+
+  updateDOM();
+}
+
+
 // Add new user object to data array
 function addData(obj) {
   data.push(obj); //* push means append for array in JS
@@ -71,3 +81,4 @@ function updateDOM(providedData = data) {
 
 // Event Listeners
 addUserBtn.addEventListener('click', getRandomUser);
+doubleBtn.addEventListener('click', doubleMoney);
